@@ -1,0 +1,10 @@
+COPYRIGHT
+README.txt
+lua-stringlua.rockspec
+test.lua
+test_performance.lua
+util.mk
+lmod/stringlua.lua
+lmod/stringlua/filearray.lua
+lmod/stringlua/stringarray.lua
+lmod/stringlua/tablearray.lua
