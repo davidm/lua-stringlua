@@ -1,6 +1,6 @@
-COPYRIGHT
+COPYRIGHT.txt
 README.txt
-lua-stringlua.rockspec
+rockspec.in
 test.lua
 test_performance.lua
 util.mk

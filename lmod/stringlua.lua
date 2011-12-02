@@ -3,12 +3,12 @@
 -- Strings are represented as table arrays of values
 -- (typically, though not necessarily, chars).
 --
--- (c) 2008 David Manura, licensed under the same terms as Lua (MIT license).
+-- (c) 2008-2011 David Manura, licensed under the same terms as Lua (MIT license).
 -- This is based directly on lstrlib.c in Lua 5.1.4.
 -- Copyright (C) 1994-2008 Lua.org, PUC-Rio.
 -- See Copyright Notice in lua.h (MIT license).
 
-local M = {_TYPE='module', _NAME='stringlua', _VERSION='000.001.2008'}
+local M = {_TYPE='module', _NAME='stringlua', _VERSION='0.1.20111129'}
 
 local string = string
 local assert = assert
