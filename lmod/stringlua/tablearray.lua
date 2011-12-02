@@ -1,11 +1,13 @@
--- tablearray.lua - table with array-like interface.
---
--- Example:
---   local TA = require 'tablearray'
---   local s = TA {'t', 'e', 's', 't'}
---   assert(s[3] == 's') -- access third element
---   local s = TA 'test' -- equivalent to above
---   assert(s[3] == 's') -- access third element
+--[[
+ tablearray.lua - table with array-like interface.
+
+ Example:
+   local TA = require 'tablearray'
+   local s = TA {'t', 'e', 's', 't'}
+   assert(s[3] == 's') -- access third element
+   local s = TA 'test' -- equivalent to above
+   assert(s[3] == 's') -- access third element
+--]]
 
 
 local string_sub = string.sub

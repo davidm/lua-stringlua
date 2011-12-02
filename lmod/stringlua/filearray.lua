@@ -1,12 +1,14 @@
--- filearray.lua - file with array-like interface.
---
--- Example:
---   local FA = require 'filearray'
---   local s = FA 'manual.html'
---   print(s[100]) -- print 100th byte of file
---   s:close()
---
--- Note: access is buffered.
+--[[
+ filearray.lua - file with array-like interface.
+
+ Example:
+   local FA = require 'filearray'
+   local s = FA 'manual.html'
+   print(s[100]) -- print 100th byte of file
+   s:close()
+
+ Note: access is buffered.
+--]]
 
 local SZBLOCK = 1024
 

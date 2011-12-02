@@ -1,9 +1,11 @@
--- stringarray.lua - string with array-like interface.
---
--- Example:
---   local SA = require 'stringarray'
---   local s = SA 'test'
---   assert(s[3] == 's') -- access third element
+--[[
+ stringarray.lua - string with array-like interface.
+
+ Example:
+   local SA = require 'stringarray'
+   local s = SA 'test'
+   assert(s[3] == 's') -- access third element
+--]]
 
 
 local string_sub = string.sub

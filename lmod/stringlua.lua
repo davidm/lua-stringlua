@@ -1,14 +1,105 @@
--- string.lua
--- string.match and string.find reimplemented in Lua.
--- Strings are represented as table arrays of values
--- (typically, though not necessarily, chars).
---
--- (c) 2008 David Manura, licensed under the same terms as Lua (MIT license).
--- This is based directly on lstrlib.c in Lua 5.1.4.
--- Copyright (C) 1994-2008 Lua.org, PUC-Rio.
--- See Copyright Notice in lua.h (MIT license).
+--[[
 
-local M = {_TYPE='module', _NAME='stringlua', _VERSION='000.001.2008'}
+LUA MODULE
+
+  stringlua v$(_VERSION) - string.match and string.find reimplemented in Lua.
+
+SYNOPSIS
+
+  local S = require "stringlua"
+  local TA = require "stringlua.tablearray" -- strings as tables of chars
+  local FA = require "stringlua.filearray"  -- strings as proxy tables to files
+  local SA = require "stringlua.stringarray"-- strings as proxy tables to strings
+  local s1 = TA {'a','b','c','1','2','3'}
+  assert(S.match(s1, SA'%a%d') == TA{'c','1'})
+  
+DESCRIPTION
+
+  This module partially reimplements Lua 5.1's string library [1] (mainly,
+  `string.match` and `string.find`) in Lua. This is a fairly direct port of
+  `lstrlib.c` [2] to Lua and therefore is not necessarily the most efficient
+  possible.  Strings are represented as arrays of values
+  (typically, though not necessarily, chars).  Reimplementing these in Lua
+  provides a number of generalizations and possible applications:
+
+  - The pattern matching library can be extended in Lua
+  - The pattern matching can match not just strings but also to arrays
+      of chars and arrays of arbitrary values, including arrays backed by
+      metamethods. The `filearray.lua` example included in the appendix
+      allows a large file to be accessed via an array interface, which can
+      then be matched by these `string.find`/`string.match` functions, without
+      ever loading the entire file into memory at once.
+      
+  A few examples are given in the test suite (`test.lua`).
+
+API
+
+  The `S` table is similar to the Lua `string` table except the
+  functions like `find` and `match` accept and return table arrays of
+  characters rather than Lua strings.  Any metamethods on these
+  string-like objects are honored, so these tables may be proxy tables.
+  A number of additional modules provide various implementations of
+  these string-like objects:
+  
+  - stringlua.tablearray   - tables of characters
+  - stringlua.filearray    - proxy table backed by a file
+  - stringlua.stringarray  - proxy table backed by a string
+  
+DEPENDENCIES
+
+  None (other than Lua 5.1 or 5.2).
+  
+HOME PAGE
+
+  http://lua-users.org/wiki/StringLibraryInLua
+  https://github.com/davidm/lua-stringlua
+
+DOWNLOAD/INSTALL
+
+  If using LuaRocks:
+    luarocks install lua-stringlua
+
+  Otherwise, download <https://github.com/davidm/lua-stringlua/zipball/master>.
+  Alternately, if using git:
+    git clone git://github.com/davidm/lua-stringlua.git
+    cd lua-stringlua
+  Optionally unpack:
+    ./util.mk
+  or unpack and install in LuaRocks:
+    ./util.mk install 
+  
+REFERENCES
+ 
+  [1] http://www.lua.org/manual/5.1/manual.html#5.4
+  [2] http://www.lua.org/source/5.1/lstrlib.c.html
+
+LICENSE
+  
+  (c) 2008-2011 David Manura.  Licensed under the same terms as Lua (MIT).
+  This is based directly on lstrlib.c in Lua 5.1.4.
+  Copyright (C) 1994-2008 Lua.org, PUC-Rio.
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  (end license)
+--]]---------------------------------------------------------------------
+
+local M = {_TYPE='module', _NAME='stringlua', _VERSION='0.1.20111203'}
 
 local string = string
 local assert = assert
