@@ -44,8 +44,8 @@ local function new(s)
     for i=1,#s do self[i] = string_sub(s, i, i) end
     self.n = #s
   elseif type(s) == 'table' then
+    s.n = #s  -- rawlen before setting metatable
     self = setmetatable(s, mt)
-    self.n = #s
   else
     assert(false)
   end
